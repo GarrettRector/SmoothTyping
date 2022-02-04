@@ -13,3 +13,6 @@ smoothtype("Hello, World!", space=False)
 # demonstrates the repr of smoothtype, giving valuable information about the object
 typing = smoothtype("Hello, World!", speed=.25)
 print(typing)
+
+# uses the parameter newline to specify if a new line is added after the string is printed
+typing = smoothtype("Hello, World!", speed=.25, newline=False)
