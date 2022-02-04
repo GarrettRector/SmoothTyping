@@ -1,14 +1,21 @@
 import sys
 import time as t
-import src.errors.error as e
+
 
 class smoothtype:
-    def __init__(self, string, speed: [int, float] = .21, space: bool = True, newline: bool = True,
-                 fixed_time: bool = False, time: int = None):
+    """
+    docstring for smoothtype
+    """
+    def __init__(self, string, speed: [int, float] = None, space: bool = True, newline: bool = True,
+                 fixed_time: bool = False, time: [int, float] = None):
         if speed and (time or fixed_time):
-            raise e.Error("You can't use both speed and time.")
+            raise ValueError("You can't use both time and speed")
+        elif speed is None:
+            speed = .21
+        if not fixed_time and time:
+            raise ValueError("You can't use time without fixed_time")
         self.string = string
-        self.time_per_char = speed
+        self.time_per_char = time / len(self.string) if fixed_time else speed
         self.finished = False
         self.char = 0
         self.newline = newline
